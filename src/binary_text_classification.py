@@ -13,7 +13,7 @@ This script runs the text classification pipeline, which includes:
 Author: Laura Bock Paulsen (202005791)
 """
 
-import os
+from pathlib import Path
 import pandas as pd
 import argparse
 from joblib import dump
@@ -44,7 +44,7 @@ def input_parse():
 
 def main():
     start = perf_counter() # for timing the script execution
-    
+    path = Path(__file__)
     # parse the input
     args = input_parse()
     
@@ -53,8 +53,8 @@ def main():
     logger.info(f'Binary text decoding with vec_type = {args.vec_type}, clf_type = {args.clf_type}')
 
     # load the data
-    path = os.path.join(os.path.dirname(__file__), '..', 'in', 'fake_or_real_news.csv')
-    df = pd.read_csv(path)
+    data_path = path.parents[1] / 'in' / 'fake_or_real_news.csv'
+    df = pd.read_csv(data_path)
 
     # splitting the data into X (the text) and y (the label)
     X, y = df['text'], df['label']
@@ -69,7 +69,7 @@ def main():
     report = tclf.get_metrics(y_pred, y_test)
 
     # save report as txt file
-    report_path = os.path.join(os.path.dirname(__file__), '..', 'out', f'{args.vec_type}_{args.clf_type}_report.txt')
+    report_path = path.parents[1] / 'out' / f'{args.vec_type}_{args.clf_type}_report.txt'
     
     with open(report_path, 'w') as f:
         f.write(report)
@@ -77,9 +77,10 @@ def main():
     # save models if specified
     if args.save_models:
         # save the vectorizer and classifier
-        model_path = os.path.join('models')
-        dump(tclf.vec, os.path.join(model_path, f'vectorizer_{args.vec_type}.pkl'))
-        dump(tclf.clf, os.path.join(model_path, f'classifier_{args.clf_type}.pkl'))
+
+        model_path = path.parents[1] / 'models'
+        dump(tclf.vec, model_path / f'vectorizer_{args.vec_type}.pkl')
+        dump(tclf.clf, model_path / f'classifier_{args.clf_type}.pkl')
         
     end = perf_counter()
     logger.info(f'Finished in {end-start} seconds')
