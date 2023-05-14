@@ -102,12 +102,12 @@ class TextClassification:
         X_test = self.vec.transform(X_test)
 
         # fit the classifier
-        self.clf.fit(X_train, y_train)
+        history = self.clf.fit(X_train, y_train)
 
         # predict the labels
         y_pred = self.clf.predict(X_test)
 
-        return y_pred, y_test
+        return y_pred, y_test, history
     
     @staticmethod
     def get_metrics(y_pred, y):
