@@ -48,7 +48,7 @@ def plot_history(history, save_path=None):
     import matplotlib.pyplot as plt
     plt.style.use('ggplot')
     
-    fig, ax = plt.subplots(1,2, figsize=(10,5))
+    fig, ax = plt.subplots(1,2, figsize=(10,5), dpi = 300)
     
     ax[0].plot(history.history['accuracy'], label='train')
     ax[0].plot(history.history['val_accuracy'], label='validation')
