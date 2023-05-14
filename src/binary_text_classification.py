@@ -41,35 +41,6 @@ def input_parse():
     
     return args
 
-def plot_history(history, save_path=None):
-    """
-    Plots the training and validation accuracy and loss.
-    """
-    import matplotlib.pyplot as plt
-    plt.style.use('ggplot')
-    
-    fig, ax = plt.subplots(1,2, figsize=(10,5), dpi = 300)
-    
-    ax[0].plot(history.history['accuracy'], label='train')
-    ax[0].plot(history.history['val_accuracy'], label='validation')
-    ax[0].set_title('Accuracy')
-    ax[0].set_xlabel('Epoch')
-    ax[0].set_ylabel('Accuracy')
-    ax[0].legend()
-    
-    ax[1].plot(history.history['loss'], label='train')
-    ax[1].plot(history.history['val_loss'], label='validation')
-    ax[1].set_title('Loss')
-    ax[1].set_xlabel('Epoch')
-    ax[1].set_ylabel('Loss')
-    ax[1].legend()
-
-    plt.tight_layout()
-
-    if save_path:
-        plt.savefig(save_path)
-    
-
 def main():
     start = perf_counter() # for timing the script execution
     path = Path(__file__)
@@ -91,11 +62,7 @@ def main():
     tclf = TextClassification(vec_type = args.vec_type, clf_type = args.clf_type)
 
     # run the model (splits the data into train and test)
-    y_pred, y_test, history = tclf.train_test_predict(X, y)
-
-    # plot the training and validation accuracy and loss
-    plot_path = path.parents[1] / 'out' / f'{args.vec_type}_{args.clf_type}_history.png'
-    plot_history(history, save_path = plot_path)
+    y_pred, y_test = tclf.train_test_predict(X, y)
 
     # get the classification report
     report = tclf.get_metrics(y_pred, y_test)

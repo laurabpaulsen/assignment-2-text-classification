@@ -54,14 +54,17 @@ The models (vectorizers and classifiers) are saved in the `models` folder. The c
 
 Two models were trained, one being a logistic regression classifier and the other a multi-layer perceptron (MLP) classifier with three 20-unit hidden layers. The models were trained using both count and tf-idf vectorizers.
 
-| Model   | Fake/Real | Precision | Recall | F1-Score | Support |
-|---------|-----------|-----------|--------|----------|---------|
-| Logistic |   FAKE    |   0.88    |  0.88  |   0.88   |   974   |
-| Logistic |   REAL    |   0.88    |  0.88  |   0.88   |   927   |
-| MLP |   FAKE    |   0.88    |  0.87  |   0.88   |   974   |
-| MLP |   REAL    |   0.86    |  0.88  |   0.87   |   927   |
+
+|   Vectorizer    |   Model    | Fake/Real | Precision | Recall | F1-Score | Support |
+|-----------------|------------|-----------|-----------|--------|----------|---------|
+| tfidf           | logistic   |   FAKE    |   0.88    |  0.88  |   0.88   |   974   |
+| tfidf           | logistic   |   REAL    |   0.88    |  0.88  |   0.88   |   927   |
+| tfidf           | mlp        |   FAKE    |   0.88    |  0.87  |   0.88   |   974   |
+| tfidf           | mlp        |   REAL    |   0.86    |  0.88  |   0.87   |   927   |
+| count           | logistic   |   FAKE    |   0.84    |  0.87  |   0.86   |   974   |
+| count           | logistic   |   REAL    |   0.86    |  0.83  |   0.84   |   927   |
+| count           | mlp        |   FAKE    |   0.88    |  0.89  |   0.88   |   974   |
+| count           | mlp        |   REAL    |   0.88    |  0.87  |   0.88   |   927   |
 
 
 The two models performed similarly, with the MLP classifier having a slightly worse performance (lower scores for precision of real news and recall of fake news, as well as a slightly lower accuracy).
-
-It might be that the more simple model performs better because the data is not very complex. The MLP classifier might be overfitting the data, which could explain the slightly worse performance. However, the difference in performance is very small, so it is hard to say for sure.
