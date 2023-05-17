@@ -2,7 +2,7 @@
 Assignment 2 for language analytics (S2023). This repository holds the code for training binary text classification models using the `scikit-learn` library. More specifically, a logistic regression classifier and a multi-layer perceptron (MLP) classifier were trained using tf-idf vectorizers.
 
 ## Description of the data
-The data used for this assignment is the [Fake or real news dataset](https://www.kaggle.com/datasets/nopdev/real-and-fake-news-dataset) from Kaggle. It contains the title, text, and label of 6335 news articles. The label indicates whether the article is fake or real. The data is stored in the `in` directory. 
+The data used for this assignment is the [Fake or real news dataset](https://www.kaggle.com/datasets/nopdev/real-and-fake-news-dataset) from Kaggle. It contains the title, text, and label of 7796 news articles. The label indicates whether the article is fake or real. The data is stored in the `in` directory. 
 
 ## Usage and reproduciblity
 To produce the results for this assignment, run the following commands from the root directory of the repository. This creates and activates a virtual environment and runs the script with the desired arguments.
