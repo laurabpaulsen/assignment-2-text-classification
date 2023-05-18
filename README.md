@@ -24,6 +24,7 @@ bash setup.sh
 
 2. Run the script with the desired arguments
 ```
+source ./env/bin/activate
 python src/binary_text_classification.py --clf_type <model_type> --vec_type <vectorizer_type> --save_models <True/False>
 ```
 
@@ -46,6 +47,9 @@ python src/binary_text_classification.py --clf_type <model_type> --vec_type <vec
 ├── src
 │   ├── binary_text_classification.py       <- Main script training the models and saving the results
 │   └── text_clf.py                         <- Holds the `TextClassifier` class for training and evaluating models
+├── requirements.txt
+├── run.sh
+├── setup.sh
 └── README.md                               <- The top-level README for this project
 ```
 
@@ -66,5 +70,6 @@ Two models were trained, one being a logistic regression classifier and the othe
 | count           | mlp        |   FAKE    |   0.88    |  0.89  |   0.88   |   974   |
 | count           | mlp        |   REAL    |   0.88    |  0.87  |   0.88   |   927   |
 
+As seen above all models perform exhibit similar performance, except for the the logistic regression classifier trained using the count vectorizer. This model performs worse than the rest. In comparison to the other models, this particular model demonstrates poorer performance.
 
-The two models performed similarly, with the MLP classifier having a slightly worse performance (lower scores for precision of real news and recall of fake news, as well as a slightly lower accuracy).
+Using the tf-idf vectorizer, the logistic regression classifier achieved an F1-score of 0.88 for both classes, while the MLP classifier achieved an F1-score of 0.88 for the fake class and 0.87 for the real class. Using the count vectorizer, the logistic regression classifier achieved an F1-score of 0.86 for the fake class and 0.84 for the real class, while the MLP classifier achieved an F1-score of 0.88 for both classes.
