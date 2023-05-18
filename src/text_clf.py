@@ -1,5 +1,5 @@
 """
-Class for text classification.
+This script holds the TextClassification class which is used to train and test a text classification model.
 
 Author: Laura Bock Paulsen (202005791)
 """

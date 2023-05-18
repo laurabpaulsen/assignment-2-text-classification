@@ -24,7 +24,6 @@ from text_clf import TextClassification
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 
-
 def input_parse():
     parser = argparse.ArgumentParser()
     parser.add_argument('--vec_type', type=str, default='tfidf', help='vectorizer type (can be tfidf or count)')
