@@ -15,6 +15,8 @@ bash setup.sh
 bash run
 ```
 
+
+
 **Alternatively**, you can run the following commands manually.
 
 1. Create the virtual environment (if not already created):
@@ -27,6 +29,8 @@ bash setup.sh
 source ./env/bin/activate
 python src/binary_text_classification.py --clf_type <model_type> --vec_type <vectorizer_type> --save_models <True/False>
 ```
+The pipeline was developed and tested on [uCloud](https://cloud.sdu.dk/app/dashboard)(Ubuntu v22.10m, Coder python v1.77.3, python v3.10.7).
+
 
 ### Arguments
 - `clf_type`: The type of classifier to use. Can be either `mlp` or `logistic`.
